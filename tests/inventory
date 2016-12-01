@@ -1,0 +1,9 @@
+localhost ansible_connection=local
+
+[machines]
+master image="clayman74/debian"
+slave image="clayman74/debian" openvpn_address="10.8.0.3"
+
+[machines:vars]
+openvpn_server='master'
+openvpn_clients=['slave']

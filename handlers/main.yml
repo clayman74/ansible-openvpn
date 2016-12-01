@@ -1,0 +1,4 @@
+---
+
+- name: restart openvpn
+  shell: service openvpn restart

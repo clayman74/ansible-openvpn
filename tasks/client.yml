@@ -1,0 +1,26 @@
+---
+
+# - name: Install required packages
+#   apt: name={{ item }} update_cache=yes state=installed force=yes
+#   with_items:
+#     - openssl
+#     - openvpn
+
+- name: Upload client keys and certificate
+  copy: src=certs/{{ inventory_hostname }}/{{ item }} dest=/etc/openvpn/{{ item }}
+  with_items:
+    - ca.crt
+    - dh2048.pem
+    - "{{ inventory_hostname }}.crt"
+    - "{{ inventory_hostname }}.key"
+    - ta.key
+
+- name: "Associate ip address with hosts"
+  set_fact:
+    openvpn_server_host: "{{ hostvars[openvpn_server]['ansible_default_ipv4']['address'] }}"
+
+- name: Create client config
+  template: src=client.conf dest=/etc/openvpn/client.conf mode=0644
+
+- name: Restart openvpn service
+  systemd: state=restarted name=openvpn@client

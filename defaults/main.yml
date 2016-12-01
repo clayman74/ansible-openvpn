@@ -1,0 +1,27 @@
+---
+
+openvpn_key_country: "RU"
+openvpn_key_province: "Chelyabinskaya oblast"
+openvpn_key_city: "Chelyabinsk"
+openvpn_key_org: ""
+openvpn_key_ou: ""
+openvpn_request_subject: "/C={{ openvpn_key_country }}/ST={{ openvpn_key_province }}/L={{ openvpn_key_city }}/O={{ openvpn_key_org }}/OU={{ openvpn_key_ou }}"
+
+openvpn_days_valid: "365"
+openvpn_key_size: "2048"
+openvpn_cipher: "AES-256-CBC"
+openvpn_auth_digest: "SHA512"
+openvpn_path: "/etc/openvpn"
+openvpn_ca: "{{ openvpn_path }}/keys/ca"
+openvpn_dhparam: "{{ openvpn_path }}/keys/dh{{ openvpn_key_size }}.pem"
+openvpn_hmac_firewall: "{{ openvpn_path }}/keys/ta.key"
+
+openvpn_server: ''
+openvpn_proto: 'udp'
+openvpn_port: '1194'
+openvpn_dev: 'tun'
+
+openvpn_tls_version_min: "tls-version-min 1.2"
+openvpn_tls_cipher: "tls-cipher TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256:TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256:TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384:TLS-DHE-RSA-WITH-AES-256-CBC-SHA256"
+
+openvpn_clients: []
