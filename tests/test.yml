@@ -1,13 +1,5 @@
 ---
 
-- name: Bring up docker containers
-  hosts: localhost
-  roles:
-    - role: clayman74.docker-provision
-      docker_provision_privileged: true,
-      docker_provision_published_ports: [22, 1194]
-      docker_provision_inventory_group: "{{ groups['machines'] }}"
-
 - name: Run tests
   hosts: machines
 
