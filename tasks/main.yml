@@ -1,11 +1,11 @@
 ---
 
-- include: server.yml
+- import_tasks: server.yml
   when: "ansible_distribution == 'Debian' and inventory_hostname == openvpn_server"
   tags:
     - openvpn
 
-- include: client.yml
+- import_tasks: client.yml
   when: "ansible_distribution == 'Debian' and inventory_hostname in openvpn_clients"
   tags:
     - openvpn
